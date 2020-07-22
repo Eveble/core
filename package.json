@@ -31,6 +31,7 @@
     "ttypescript": "^1.5.10",
     "@eveble/helpers": "latest",
     "@parisholley/inversify-async": "^1.1.7",
+    "getenv": "^1.0.0",
   },
   "devDependencies": {
     "@types/chai-as-promised": "^7.1.2",
