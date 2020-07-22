@@ -13,7 +13,7 @@
     "email": "eveble@eveble.com",
     "url": "https://eveble.com"
   },
-  "homepage": "https://eveble.github.io/core",
+  "homepage": "https://eveble.github.io/core/",
   "keywords": [],
   "bugs": "https://github.com/eveble/core/issues",
   "license": "MIT",
@@ -28,7 +28,12 @@
   "dependencies": {
     "reflect-metadata": "^0.1.13",
     "tsruntime": "^3.0.0-beta.1",
-    "ttypescript": "^1.5.10"
+    "ttypescript": "^1.5.10",
+    "@eveble/helpers": "latest",
+    "@parisholley/inversify-async": "^1.1.7",
+    "getenv": "^1.0.0",
+    "lodash": "^4.17.19",
+    "typend": "latest"
   },
   "devDependencies": {
     "@types/chai-as-promised": "^7.1.2",
@@ -84,7 +89,8 @@
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "chalk": "^4.1.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "@types/lodash": "^4.14.157"
   },
   "scripts": {
     "explain": "./node_modules/.bin/npm-scripts-info",
