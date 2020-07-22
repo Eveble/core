@@ -66,15 +66,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-    services:
-      mongodb:
-        image: mongo:4.2
-        ports:
-          - 27017:27017
-        env:
-          MONGO_INITDB_ROOT_USERNAME: root
-          MONGO_INITDB_ROOT_PASSWORD: password
-    name: Tests / Node@${{ matrix.node-version}} / Run tests
+    name: Node@${{ matrix.node-version}} / Run tests
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node
