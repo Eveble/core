@@ -16,6 +16,9 @@ export {
 
 // Errors
 export {
+  KernelError,
+  UnavailableSerializerError,
+  UnavailableAsserterError,
   TypeExistsError,
   TypeNotFoundError,
   UnregistrableTypeError,

@@ -8,12 +8,14 @@ import {
   isSerializable,
   resolveSerializableFromPropType,
 } from '../../src/utils/helpers';
-
 import {
   TypeExistsError,
   TypeNotFoundError,
   UnregistrableTypeError,
   TypeError,
+  KernelError,
+  UnavailableSerializerError,
+  UnavailableAsserterError,
 } from '../../src/errors';
 
 import {
@@ -29,6 +31,9 @@ import {
   isSerializable as isSerializableExported,
   resolveSerializableFromPropType as resolveSerializableFromPropTypeExported,
   // Errors
+  KernelError as KernelErrorExported,
+  UnavailableSerializerError as UnavailableSerializerErrorExported,
+  UnavailableAsserterError as UnavailableAsserterErrorExported,
   InvalidTypeNameError as InvalidTypeNameErrorExported,
   TypeExistsError as TypeExistsErrorExported,
   TypeNotFoundError as TypeNotFoundErrorExported,
@@ -73,6 +78,19 @@ describe('exports', function () {
   });
 
   describe('errors', () => {
+    it('KernelError', () => {
+      expect(KernelErrorExported).to.be.equal(KernelError);
+    });
+    it('UnavailableSerializerError', () => {
+      expect(UnavailableSerializerErrorExported).to.be.equal(
+        UnavailableSerializerError
+      );
+    });
+    it('UnavailableAsserterError', () => {
+      expect(UnavailableAsserterErrorExported).to.be.equal(
+        UnavailableAsserterError
+      );
+    });
     it('InvalidTypeNameError', () => {
       expect(InvalidTypeNameErrorExported).to.be.equal(InvalidTypeNameError);
     });
