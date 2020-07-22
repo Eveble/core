@@ -347,6 +347,13 @@
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-9.0.1.tgz#df281f0f3d8f3adb10c95e4dd72b16acf41b5400"
   integrity sha512-wo2rHprtDzTHf4tiSxavktJ52ntiwmg7eHNGFLH38G1of8OfGVwOc1sVbpM4jN/HK/rCMhYOi6xzoPqsv0537A==
 
+"@eveble/helpers@^1.0.3", "@eveble/helpers@latest":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@eveble/helpers/-/helpers-1.0.3.tgz#4cedc4df777dfd2a7bac2387a7537bc22abbd3a1"
+  integrity sha512-gR/PKgh8yGIu6pHNrgaqb/Rgf9di6+rKQXXxofnRWVgP1pgQOpAb4TcqYJS/QV4JVSne5P0mc1oFo98jXbmprw==
+  dependencies:
+    reflect-metadata "^0.1.13"
+
 "@iarna/cli@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@iarna/cli/-/cli-1.2.0.tgz#0f7af5e851afe895104583c4ca07377a8094d641"
@@ -567,6 +574,11 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@parisholley/inversify-async@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@parisholley/inversify-async/-/inversify-async-1.1.7.tgz#f7a3e50bc7ff5d9851c55351e968217206a3ad83"
+  integrity sha512-0+uQBOA9UxZtJqadNCroRsVg3lQO7dvH8sM6a70K+8nTPnzZ4tHV2VXYrajSLVb23LAnQeNdMwC9cha71bR04A==
+
 "@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.0.9":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
@@ -757,6 +769,11 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
+"@types/lodash@^4.14.157":
+  version "4.14.158"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.158.tgz#b38ea8b6fe799acd076d7a8d7ab71c26ef77f785"
+  integrity sha512-InCEXJNTv/59yO4VSfuvNrZHt7eeNtWQEgnieIA+mIC+MOWM9arOWG2eQ8Vhk6NbOre6/BidiXhkZYeDY9U35w==
 
 "@types/minimatch@^3.0.3":
   version "3.0.3"
@@ -2508,6 +2525,11 @@ dedent@0.7.0, dedent@^0.7.0:
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha1-JJXduvbrh0q7Dhvp3yLS5aVEMmw=
 
+deep-diff@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-1.0.2.tgz#afd3d1f749115be965e89c63edc7abb1506b9c26"
+  integrity sha512-aWS3UIVH+NPGCD1kki+DCU9Dua032iSsO43LqQpcs4R3+dVv7tX0qBGjiVHJHjplsoUM2XRO/KB92glqc68awg==
+
 deep-eql@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/deep-eql/-/deep-eql-3.0.1.tgz#dfc9404400ad1c8fe023e7da1df1c147c4b444df"
@@ -2524,6 +2546,11 @@ deep-is@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
+
+deepmerge@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
+  integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
 default-compare@^1.0.0:
   version "1.0.0"
@@ -2847,7 +2874,7 @@ es5-ext@^0.10.35, es5-ext@^0.10.46, es5-ext@^0.10.50:
     es6-symbol "~3.1.3"
     next-tick "~1.0.0"
 
-es6-error@^4.0.1:
+es6-error@^4.0.1, es6-error@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.1.1.tgz#9e3af407459deed47e9a91f9b885a84eb05c561d"
   integrity sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==
@@ -3753,6 +3780,11 @@ get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
+
+getenv@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/getenv/-/getenv-1.0.0.tgz#874f2e7544fbca53c7a4738f37de8605c3fcfc31"
+  integrity sha512-7yetJWqbS9sbn0vIfliPsFgoXMKn/YMF+Wuiog97x+urnSRRRZ7xB+uVkwGKzRgq9CDFfMQnE9ruL5DHv9c6Xg==
 
 getpass@^0.1.1:
   version "0.1.7"
@@ -7274,6 +7306,11 @@ plugin-error@^1.0.1:
     arr-union "^3.1.0"
     extend-shallow "^3.0.2"
 
+polytype@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/polytype/-/polytype-0.9.4.tgz#38082d6e345670ca1963a0ef58f72d564290fae1"
+  integrity sha512-pkS84YcAEPHkIWEYKd9/QDmYPIhlmQeOUYwEO7IQRGEvlIkNIKCs6r4zhFSdTCNAEiCnfCgINHQNDfShlS2snw==
+
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -9294,6 +9331,21 @@ typedoc@^0.17.7:
     progress "^2.0.3"
     shelljs "^0.8.4"
     typedoc-default-themes "^0.10.1"
+
+typend@latest:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typend/-/typend-1.0.2.tgz#6711b424ab5dd9818aa3d857c03dc96c2080832b"
+  integrity sha512-LjEEtqmDZt0ELyXuTpxGPnjecH++HWVVSTpX2MncT+yAinzPM67ik3Vlu34Lscw7wIOAbojLyqvl7amHve447A==
+  dependencies:
+    "@eveble/helpers" "^1.0.3"
+    deep-diff "^1.0.2"
+    deepmerge "^4.2.2"
+    es6-error "^4.1.1"
+    lodash "^4.17.15"
+    polytype "^0.9.4"
+    reflect-metadata "^0.1.13"
+    tsruntime "^3.0.0-beta.1"
+    ttypescript "^1.5.10"
 
 typescript@^3.9.3:
   version "3.9.5"
