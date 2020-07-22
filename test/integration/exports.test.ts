@@ -4,6 +4,8 @@ import { ExtendableError } from '../../src/components/extendable-error';
 import { Library } from '../../src/components/library';
 import { kernel, Kernel } from '../../src/kernel';
 import { InvalidTypeNameError } from '../../src/decorators/define';
+import { BINDINGS } from '../../src/constants/bindings';
+import { METADATA_KEYS } from '../../src/constants/metadata-keys';
 import {
   isSerializable,
   resolveSerializableFromPropType,
@@ -39,9 +41,28 @@ import {
   TypeNotFoundError as TypeNotFoundErrorExported,
   UnregistrableTypeError as UnregistrableTypeErrorExported,
   TypeError as TypeErrorExported,
+  BINDINGS as BINDINGS_EXPORTED,
+  CORE_BINDINGS as CORE_BINDINGS_EXPORTED,
+  METADATA_KEYS as METADATA_KEYS_EXPORTED,
+  CORE_METADATA_KEYS as CORE_METADATA_KEYS_EXPORTED,
 } from '../../src/index';
 
 describe('exports', function () {
+  describe('constants', () => {
+    it('BINDINGS', () => {
+      expect(BINDINGS_EXPORTED).to.be.equal(BINDINGS);
+    });
+    it('CORE_BINDINGS', () => {
+      expect(CORE_BINDINGS_EXPORTED).to.be.equal(BINDINGS);
+    });
+    it('METADATA_KEYS', () => {
+      expect(METADATA_KEYS_EXPORTED).to.be.equal(METADATA_KEYS);
+    });
+    it('CORE_METADATA_KEYS', () => {
+      expect(CORE_METADATA_KEYS_EXPORTED).to.be.equal(METADATA_KEYS);
+    });
+  });
+
   describe('decorators', () => {
     it('define', () => {
       expect(defineExported).to.be.equal(define);
