@@ -30,6 +30,7 @@
     "tsruntime": "^3.0.0-beta.1",
     "ttypescript": "^1.5.10",
     "@eveble/helpers": "latest",
+    "@parisholley/inversify-async": "^1.1.7",
   },
   "devDependencies": {
     "@types/chai-as-promised": "^7.1.2",
