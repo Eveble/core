@@ -28,7 +28,8 @@
   "dependencies": {
     "reflect-metadata": "^0.1.13",
     "tsruntime": "^3.0.0-beta.1",
-    "ttypescript": "^1.5.10"
+    "ttypescript": "^1.5.10",
+    "@eveble/helpers": "latest",
   },
   "devDependencies": {
     "@types/chai-as-promised": "^7.1.2",
