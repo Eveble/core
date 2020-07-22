@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/eveble/core/compare/v1.0.0...v1.0.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* add missing kernel error exports ([d6fdb4a](https://github.com/eveble/core/commit/d6fdb4a94b75e4777df9b949103904fa227e34e4))
+
 # 1.0.0 (2020-07-22)
 
 

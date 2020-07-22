@@ -406,9 +406,12 @@ Object.defineProperty(exports, 'define', {
 exports.ExtendableError = ExtendableError;
 exports.InvalidTypeNameError = InvalidTypeNameError;
 exports.Kernel = Kernel;
+exports.KernelError = KernelError;
 exports.TypeError = TypeError;
 exports.TypeExistsError = TypeExistsError;
 exports.TypeNotFoundError = TypeNotFoundError;
+exports.UnavailableAsserterError = UnavailableAsserterError;
+exports.UnavailableSerializerError = UnavailableSerializerError;
 exports.UnregistrableTypeError = UnregistrableTypeError;
 exports.isSerializable = isSerializable;
 exports.kernel = kernel;

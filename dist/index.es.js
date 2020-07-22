@@ -380,4 +380,4 @@ define.afterDefine = function (target, reflectedType, ...args) {
     Reflect.defineMetadata(SERIALIZABLE_LIST_PROPS_KEY, serializableListProps, target);
 };
 
-export { ExtendableError, InvalidTypeNameError, Kernel, Library, TypeError, TypeExistsError, TypeNotFoundError, UnregistrableTypeError, isSerializable, kernel, resolveSerializableFromPropType };
+export { ExtendableError, InvalidTypeNameError, Kernel, KernelError, Library, TypeError, TypeExistsError, TypeNotFoundError, UnavailableAsserterError, UnavailableSerializerError, UnregistrableTypeError, isSerializable, kernel, resolveSerializableFromPropType };

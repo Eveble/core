@@ -5,4 +5,4 @@ export { Library } from './components/library';
 export { kernel, Kernel } from './kernel';
 export { define, InvalidTypeNameError } from './decorators/define';
 export { isSerializable, resolveSerializableFromPropType, } from './utils/helpers';
-export { TypeExistsError, TypeNotFoundError, UnregistrableTypeError, TypeError, } from './errors';
+export { KernelError, UnavailableSerializerError, UnavailableAsserterError, TypeExistsError, TypeNotFoundError, UnregistrableTypeError, TypeError, } from './errors';
