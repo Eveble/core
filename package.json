@@ -33,6 +33,7 @@
     "@parisholley/inversify-async": "^1.1.7",
     "getenv": "^1.0.0",
     "lodash": "^4.17.19",
+    "typend": "latest"
   },
   "devDependencies": {
     "@types/chai-as-promised": "^7.1.2",
