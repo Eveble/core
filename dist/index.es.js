@@ -7,6 +7,23 @@ import { getTypeName, isMocha, isMochaInWatchMode, setTypeName } from '@eveble/h
 import { typend, isDefined, Optional, List, InstanceOf, define } from 'typend';
 export { define } from 'typend';
 
+const BINDINGS = {
+    Injector: Symbol.for('Injector'),
+    Converter: Symbol.for('Converter'),
+    Library: Symbol.for('Library'),
+    Validator: Symbol.for('Validator'),
+    Describer: Symbol.for('Describer'),
+    Serializer: Symbol.for('Serializer'),
+    Asserter: Symbol.for('Asserter'),
+};
+
+const DEFAULT_PROPS_KEY = Symbol('eveble:containers:default-props');
+const SERIALIZABLE_LIST_PROPS_KEY = Symbol('eveble:container:serializable-list-props');
+const METADATA_KEYS = {
+    DEFAULT_PROPS_KEY,
+    SERIALIZABLE_LIST_PROPS_KEY,
+};
+
 class ExtendableError extends Error {
     constructor(messageOrProps) {
         const props = isObject(messageOrProps)
@@ -167,16 +184,6 @@ Library = Library_1 = __decorate([
     __metadata("design:paramtypes", [])
 ], Library);
 
-const BINDINGS = {
-    Injector: Symbol.for('Injector'),
-    Converter: Symbol.for('Converter'),
-    Library: Symbol.for('Library'),
-    Validator: Symbol.for('Validator'),
-    Describer: Symbol.for('Describer'),
-    Serializer: Symbol.for('Serializer'),
-    Asserter: Symbol.for('Asserter'),
-};
-
 class Kernel {
     constructor(converter, validator, describer, library, config) {
         this._converter = converter;
@@ -291,9 +298,6 @@ const config = {
 };
 const kernel = new Kernel(typend.converter, typend, typend.describer, library, config);
 
-const DEFAULT_PROPS_KEY = Symbol('eveble:containers:default-props');
-const SERIALIZABLE_LIST_PROPS_KEY = Symbol('eveble:container:serializable-list-props');
-
 function isSerializable(arg) {
     if (arg == null)
         return false;
@@ -380,4 +384,4 @@ define.afterDefine = function (target, reflectedType, ...args) {
     Reflect.defineMetadata(SERIALIZABLE_LIST_PROPS_KEY, serializableListProps, target);
 };
 
-export { ExtendableError, InvalidTypeNameError, Kernel, KernelError, Library, TypeError, TypeExistsError, TypeNotFoundError, UnavailableAsserterError, UnavailableSerializerError, UnregistrableTypeError, isSerializable, kernel, resolveSerializableFromPropType };
+export { BINDINGS, BINDINGS as CORE_BINDINGS, METADATA_KEYS as CORE_METADATA_KEYS, ExtendableError, InvalidTypeNameError, Kernel, KernelError, Library, METADATA_KEYS, TypeError, TypeExistsError, TypeNotFoundError, UnavailableAsserterError, UnavailableSerializerError, UnregistrableTypeError, isSerializable, kernel, resolveSerializableFromPropType };

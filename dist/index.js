@@ -12,6 +12,23 @@ var inversifyAsync = require('@parisholley/inversify-async');
 var helpers = require('@eveble/helpers');
 var typend = require('typend');
 
+const BINDINGS = {
+    Injector: Symbol.for('Injector'),
+    Converter: Symbol.for('Converter'),
+    Library: Symbol.for('Library'),
+    Validator: Symbol.for('Validator'),
+    Describer: Symbol.for('Describer'),
+    Serializer: Symbol.for('Serializer'),
+    Asserter: Symbol.for('Asserter'),
+};
+
+const DEFAULT_PROPS_KEY = Symbol('eveble:containers:default-props');
+const SERIALIZABLE_LIST_PROPS_KEY = Symbol('eveble:container:serializable-list-props');
+const METADATA_KEYS = {
+    DEFAULT_PROPS_KEY,
+    SERIALIZABLE_LIST_PROPS_KEY,
+};
+
 class ExtendableError extends Error {
     constructor(messageOrProps) {
         const props = lodash.isObject(messageOrProps)
@@ -172,16 +189,6 @@ exports.Library = Library_1 = __decorate([
     __metadata("design:paramtypes", [])
 ], exports.Library);
 
-const BINDINGS = {
-    Injector: Symbol.for('Injector'),
-    Converter: Symbol.for('Converter'),
-    Library: Symbol.for('Library'),
-    Validator: Symbol.for('Validator'),
-    Describer: Symbol.for('Describer'),
-    Serializer: Symbol.for('Serializer'),
-    Asserter: Symbol.for('Asserter'),
-};
-
 class Kernel {
     constructor(converter, validator, describer, library, config) {
         this._converter = converter;
@@ -296,9 +303,6 @@ const config = {
 };
 const kernel = new Kernel(typend.typend.converter, typend.typend, typend.typend.describer, library, config);
 
-const DEFAULT_PROPS_KEY = Symbol('eveble:containers:default-props');
-const SERIALIZABLE_LIST_PROPS_KEY = Symbol('eveble:container:serializable-list-props');
-
 function isSerializable(arg) {
     if (arg == null)
         return false;
@@ -403,10 +407,14 @@ Object.defineProperty(exports, 'define', {
     return typend.define;
   }
 });
+exports.BINDINGS = BINDINGS;
+exports.CORE_BINDINGS = BINDINGS;
+exports.CORE_METADATA_KEYS = METADATA_KEYS;
 exports.ExtendableError = ExtendableError;
 exports.InvalidTypeNameError = InvalidTypeNameError;
 exports.Kernel = Kernel;
 exports.KernelError = KernelError;
+exports.METADATA_KEYS = METADATA_KEYS;
 exports.TypeError = TypeError;
 exports.TypeExistsError = TypeExistsError;
 exports.TypeNotFoundError = TypeNotFoundError;

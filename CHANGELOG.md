@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/eveble/core/compare/v1.0.1...v1.0.2) (2020-07-22)
+
+
+### Bug Fixes
+
+* **exports:** add BINDINGS & METADATA_KEYS exports ([a303cc7](https://github.com/eveble/core/commit/a303cc7334e230799eeff09297edae87660b0f53))
+
 ## [1.0.1](https://github.com/eveble/core/compare/v1.0.0...v1.0.1) (2020-07-22)
 
 
