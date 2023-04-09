@@ -9,6 +9,8 @@ jobs:
     name: Release to Github, NPM, Github, GitHub Packages
     runs-on: ubuntu-latest
     needs: [test, build]
+    permissions:
+      packages: write
     # Released version with semantic-release will use `semantic-release-bot` as
     # commit author and commit with message:
     #"chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
@@ -17,8 +19,6 @@ jobs:
       github.actor != 'semantic-release-bot'
       && ! contains(github.event.head_commit.message, 'chore(release):')
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       USERNAME: ${{ github.event.github.actor }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
@@ -36,21 +36,18 @@ jobs:
         run: yarn install
         env:
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
-      - name: Release with Semantic-Release
+      - name: 🚀 Release
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ env.NPM_TOKEN }}
-          SEMANTIC_RELEASE_PACKAGE: '@${{ github.repository }}'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          semantic_version: 17
-          dry_run: false
+          semantic_version: 19
           extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/exec
-            @semantic-release/git
-            semantic-release-slack-bot
+            @semantic-release/changelog@6
+            @semantic-release/git@10
+            conventional-changelog-conventionalcommits@4.6.1
       - name: Output release
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
