@@ -1,3 +1,11 @@
+## [1.0.8](https://github.com/eveble/core/compare/v1.0.7...v1.0.8) (2023-04-09)
+
+
+### Bug Fixes
+
+* **github:** update actions ([33a0d65](https://github.com/eveble/core/commit/33a0d651db5447e04cf66fdcf87caa9cddd5dc45))
+* **package:** add registry to publishConfig ([06593a2](https://github.com/eveble/core/commit/06593a2c9c605be41721963fc2a029b6c0674f24))
+
 ## [1.0.7](https://github.com/eveble/core/compare/v1.0.6...v1.0.7) (2023-04-09)
 
 
