@@ -1,3 +1,11 @@
+## [1.0.7](https://github.com/eveble/core/compare/v1.0.6...v1.0.7) (2023-04-09)
+
+
+### Bug Fixes
+
+* **github:** semantic-release ([c8ee868](https://github.com/eveble/core/commit/c8ee868c797bb825b9669fcd805e3a2f411282a5))
+* **github:** update actions ([34599e0](https://github.com/eveble/core/commit/34599e0c00acf654b580fd20d847edffebaee27d))
+
 ## [1.0.6](https://github.com/eveble/core/compare/v1.0.5...v1.0.6) (2023-04-09)
 
 
