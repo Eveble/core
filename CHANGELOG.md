@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/eveble/core/compare/v1.0.8...v1.0.9) (2023-04-09)
+
+
+### Bug Fixes
+
+* **github:** update actions ([f487f91](https://github.com/eveble/core/commit/f487f915d4b4b8145c7824eb96917e80b6a341e4))
+
 ## [1.0.8](https://github.com/eveble/core/compare/v1.0.7...v1.0.8) (2023-04-09)
 
 
