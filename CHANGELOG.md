@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/eveble/core/compare/v1.0.3...v1.0.4) (2023-04-09)
+
+
+### Bug Fixes
+
+* **deps:** bump nyc to v15.1.0 ([1d2cd97](https://github.com/eveble/core/commit/1d2cd970aeeebe10ef76b7871552d9c70c9d2fec))
+
 ## [1.0.3](https://github.com/eveble/core/compare/v1.0.2...v1.0.3) (2023-04-09)
 
 
