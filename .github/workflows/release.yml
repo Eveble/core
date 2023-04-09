@@ -37,7 +37,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
       - name: Release with Semantic-Release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v2
         id: semantic
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
@@ -45,12 +45,12 @@ jobs:
           SEMANTIC_RELEASE_PACKAGE: '@${{ github.repository }}'
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
         with:
-          semantic_version: 17
+          semantic_version: 17.0.8
           dry_run: false
           extra_plugins: |
-            @semantic-release/changelog@5.0.1
-            @semantic-release/exec@5.0.0
-            @semantic-release/git@8.0.0
+            @semantic-release/changelog
+            @semantic-release/exec
+            @semantic-release/git
             semantic-release-slack-bot
       - name: Output release
         if: steps.semantic.outputs.new_release_published == 'true'
