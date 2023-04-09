@@ -44,11 +44,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          semantic_version: 19
+          semantic_version: 20
           extra_plugins: |
-            @semantic-release/changelog@6
-            @semantic-release/git@10
-            conventional-changelog-conventionalcommits@4.6.1
+            @semantic-release/changelog
+            @semantic-release/git
       - name: Output release
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
