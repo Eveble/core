@@ -155,7 +155,6 @@
     "semantic-release": "Release with semantic release"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
