@@ -48,7 +48,6 @@ jobs:
             @semantic-release/changelog
             @semantic-release/exec
             @semantic-release/git
-            semantic-release-slack-bot
       - name: Output release
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
