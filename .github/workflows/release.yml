@@ -32,10 +32,6 @@ jobs:
           node-version: 16
           registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
-      - name: Install dependencies
-        run: yarn install
-        env:
-          NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
       - name: Release with Semantic-Release
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
