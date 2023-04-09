@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
-          SEMANTIC_RELEASE_PACKAGE: @${{ github.repository }}
+          SEMANTIC_RELEASE_PACKAGE: '@${{ github.repository }}'
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
         with:
           semantic_version: 17
