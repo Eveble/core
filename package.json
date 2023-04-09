@@ -28,7 +28,7 @@
   "dependencies": {
     "reflect-metadata": "^0.1.13",
     "tsruntime": "^3.0.0-beta.1",
-    "ttypescript": "^1.5.10",
+    "ttypescript": "^1.5.15",
     "@eveble/helpers": "latest",
     "@parisholley/inversify-async": "^1.1.7",
     "getenv": "^1.0.0",
