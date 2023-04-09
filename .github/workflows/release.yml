@@ -8,9 +8,7 @@ jobs:
   release:
     name: Release to Github, NPM, Github, GitHub Packages
     runs-on: ubuntu-latest
-    needs: [test, build]
-    permissions:
-      packages: write
+    needs: [test, build, build_docs]
     # Released version with semantic-release will use `semantic-release-bot` as
     # commit author and commit with message:
     #"chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
@@ -19,35 +17,37 @@ jobs:
       github.actor != 'semantic-release-bot'
       && ! contains(github.event.head_commit.message, 'chore(release):')
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       USERNAME: ${{ github.event.github.actor }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Setup Node@16.x
-        uses: actions/setup-node@v3
+      - name: Setup Node@14.x
+        uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 14
           registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
       - name: Install dependencies
-        run: yarn install
+        uses: jaid/action-npm-install@v1.2.1
         env:
-          NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
-      - name: 🚀 Release
-        uses: cycjimmy/semantic-release-action@v3
+          NODE_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
+      - name: Release with Semantic-Release
+        uses: cycjimmy/semantic-release-action@v2
         id: semantic
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          SEMANTIC_RELEASE_PACKAGE: '@${{ github.repository }}'
         with:
-          semantic_version: 19
+          semantic_version: 17.0.8
+          dry_run: false
           extra_plugins: |
-            @semantic-release/changelog@6
-            @semantic-release/git@10
-            conventional-changelog-conventionalcommits@4.6.1
+            @semantic-release/changelog
+            @semantic-release/exec
+            @semantic-release/git
+            semantic-release-slack-bot
       - name: Output release
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
@@ -55,9 +55,9 @@ jobs:
           echo @${{ env.USERNAME }}
       - name: Setup Node with GitHub Package Registry
         if: steps.semantic.outputs.new_release_published == 'true'
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
-          node-version: 16.x
+          node-version: 14.x
           registry-url: 'https://npm.pkg.github.com'
           scope: ${{ env.USERNAME }}
       - name: Publish To GitHub Package Registry
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x]
     services:
       mongodb:
         image: mongo:4.2
@@ -80,31 +80,84 @@ jobs:
           MONGO_INITDB_ROOT_PASSWORD: password
     name: Tests / Node@${{ matrix.node-version}} / Run tests
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
       - name: Install dependencies
-        run: yarn install
+        uses: jaid/action-npm-install@v1.2.1
         env:
-          NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
       - run: yarn test
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node@16.x
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - name: Setup Node@14.x
+        uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 14
           registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
       - name: Install dependencies
-        run: yarn install
+        uses: jaid/action-npm-install@v1.2.1
         env:
-          NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
       - run: yarn build
+  build_docs:
+    name: Build documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node@14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: ${{ env.USERNAME }}
+      - name: Install dependencies
+        uses: jaid/action-npm-install@v1.2.1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
+      - name: Install dependencies on Docusaurus
+        run: |
+          cd ./website
+          yarn install
+      - name: Build docs
+        run: yarn docs:build
+  docs:
+    name: Generate documentation
+    runs-on: ubuntu-latest
+    needs: [release]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node@14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: ${{ env.USERNAME }}
+      - name: Install dependencies
+        uses: jaid/action-npm-install@v1.2.1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
+      - name: Install dependencies on Docusaurus
+        run: |
+          cd ./website
+          yarn install
+      - name: Build docs
+        run: yarn docs:build
+      - name: Fix 404 Page not found for Github in case .nojekyll is missing in ./website/static
+        run: touch ./website/build/.nojekyll
+      - name: Deploy documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/build
+          publish_branch: gh-pages # deploying branch
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
