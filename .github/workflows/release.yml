@@ -8,7 +8,7 @@ jobs:
   release:
     name: Release to Github, NPM, Github, GitHub Packages
     runs-on: ubuntu-latest
-    needs: [test, build, build_docs]
+    needs: [test, build]
     # Released version with semantic-release will use `semantic-release-bot` as
     # commit author and commit with message:
     #"chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
