@@ -32,22 +32,20 @@ jobs:
           node-version: 14
           registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
-      - name: Release with Semantic-Release
+      - name: 🚀 Release
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
           SEMANTIC_RELEASE_PACKAGE: '@${{ github.repository }}'
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
         with:
-          semantic_version: 17.0.8
-          dry_run: false
+          semantic_version: 19
           extra_plugins: |
-            @semantic-release/changelog
-            @semantic-release/exec
-            @semantic-release/git
-            semantic-release-slack-bot
+            @semantic-release/changelog@6
+            @semantic-release/git@10
+            conventional-changelog-conventionalcommits@4.6.1
       - name: Output release
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
