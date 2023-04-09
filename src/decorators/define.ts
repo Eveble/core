@@ -23,7 +23,7 @@ export class InvalidTypeNameError extends ExtendableError {
 
 /**
  * Ensures that provided type name is valid.
- * @param name - Optional name for the type(otherwise, class constructor name will be used.)
+ * @param name - Optional name for the type(otherwise, class constructor name will be used)
  * @returns Marked class as reflective.
  * @throws {InvalidTypeNameError}
  * Thrown if provided type name is not a string.
