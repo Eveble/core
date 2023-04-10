@@ -32,7 +32,6 @@
     "getenv": "^1.0.0",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
-    "semantic-release-slack-bot": "^4.0.1",
     "tsruntime": "^3.0.0-beta.1",
     "ttypescript": "^1.5.15",
     "typend": "latest"
