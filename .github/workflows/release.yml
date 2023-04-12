@@ -26,7 +26,8 @@ jobs:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
     steps:
-      - uses: ⤵️ actions/checkout@v3
+      - name: ⤵️ Checkout
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: ⚙️ Setup Node@18.x
