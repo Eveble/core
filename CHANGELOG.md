@@ -1,3 +1,24 @@
+## [1.0.12](https://github.com/eveble/core/compare/v1.0.11...v1.0.12) (2023-04-12)
+
+
+### Bug Fixes
+
+* **github:** update actions ([a43130d](https://github.com/eveble/core/commit/a43130d3d95bc6aa74215e65edee55717a6d0a67))
+* **github:** update actions ([943698b](https://github.com/eveble/core/commit/943698b3f7c6c78cac554cf2b026f8c4a39eb61d))
+* **github:** update actions ([093c1a6](https://github.com/eveble/core/commit/093c1a6ce4d364285cdf1d4010ccea8647c4407b))
+* **github:** update actions ([a73b5fb](https://github.com/eveble/core/commit/a73b5fb40d37f38b2a4e3ede29f7b9ae25c60c2b))
+* **github:** update actions ([2a3ce03](https://github.com/eveble/core/commit/2a3ce033156df96fdcdf87270e828b30e3235f6e))
+* **github:** update actions ([f9eacb9](https://github.com/eveble/core/commit/f9eacb9732372b699ad15db0967a03b574fe624b))
+* **github:** update actions ([0a35571](https://github.com/eveble/core/commit/0a3557175bbc400b911ca59e1c8c22e69929ece1))
+* **github:** update actions ([25f6f95](https://github.com/eveble/core/commit/25f6f9513245df8607edd085a5749bb12246a901))
+* **github:** update actions ([cf9cc42](https://github.com/eveble/core/commit/cf9cc42ba82048d02646121c4e1542ed23cd25f6))
+* **github:** update actions ([9d34db9](https://github.com/eveble/core/commit/9d34db9e6fc6fa016ab64ebd7b183525cf6dfef7))
+* **github:** update actions ([3a1b818](https://github.com/eveble/core/commit/3a1b818190d6ef951a3526caf110bde09567b400))
+* **github:** update actions ([eef2ec4](https://github.com/eveble/core/commit/eef2ec4091a613f4fc99509e5fc2d55fbb062068))
+* **github:** update actions ([1f27ea4](https://github.com/eveble/core/commit/1f27ea418fb5c0842d8291bae4ab3f1f7ea4baef))
+* **github:** update actions ([ee4ea4b](https://github.com/eveble/core/commit/ee4ea4b416c2e1924c4a9e3a27bec764c2949c47))
+* **github:** update actions ([4c2ed50](https://github.com/eveble/core/commit/4c2ed500db3151d8c15032ea4eb37634e1abab53))
+
 ## [1.0.11](https://github.com/eveble/core/compare/v1.0.10...v1.0.11) (2023-04-09)
 
 
