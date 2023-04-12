@@ -8,7 +8,7 @@ jobs:
   release:
     name: Release to Github, NPM, Github, GitHub Packages
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [test, build, build_docs]
     permissions:
       packages: write
       contents: write
@@ -107,7 +107,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
       - name: ✅　Test
         run: yarn test
-build_docs:
+  build_docs:
     name: Build documentation
     runs-on: ubuntu-latest
     steps:
