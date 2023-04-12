@@ -26,7 +26,7 @@ jobs:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
     steps:
-      - name: ⤵️ Checkout
+      - name: ⤵️  Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -36,11 +36,11 @@ jobs:
           node-version: 18
           registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
-      - name: 🚧 Install dependencies
+      - name: 🚧  Install dependencies
         run: yarn install
         env:
           NODE_AUTH_TOKEN: ${{ env.EVEBLE_TYPES_AUTH_TOKEN }}
-      - name: 📦　Semantic Release
+      - name: 🚀  Release
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
         with:
