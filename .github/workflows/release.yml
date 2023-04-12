@@ -8,7 +8,7 @@ jobs:
   release:
     name: Release to Github, NPM, Github, GitHub Packages
     runs-on: ubuntu-latest
-    needs: [test, build, build_docs]
+    needs: [test, build_docs]
     permissions:
       packages: write
       contents: write
