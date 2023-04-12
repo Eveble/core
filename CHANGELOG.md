@@ -1,3 +1,10 @@
+## [1.0.15](https://github.com/Eveble/core/compare/v1.0.14...v1.0.15) (2023-04-12)
+
+
+### Bug Fixes
+
+* update lockfile yarn.lock ([69b18e7](https://github.com/Eveble/core/commit/69b18e7fa19ee46685886a469795e57654b42356))
+
 ## [1.0.14](https://github.com/Eveble/core/compare/v1.0.13...v1.0.14) (2023-04-12)
 
 
