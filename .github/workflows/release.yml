@@ -83,15 +83,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ env.GITHUB_TOKEN }}
-      - name: Install dependencies on Docusaurus
+      - name: 🚧 Install dependencies on Docusaurus
         run: |
           cd ./website
           yarn install
-      - name: Build docs
+      - name: 📄 Build docs
         run: yarn docs:build
       - name: Fix 404 Page not found for Github in case .nojekyll is missing in ./website/static
         run: touch ./website/build/.nojekyll
-      - name: Deploy documentation to GitHub Pages
+      - name: 🤓 Deploy documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
