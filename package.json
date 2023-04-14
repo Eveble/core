@@ -67,7 +67,7 @@
     "gulp": "^4.0.2",
     "gulp-connect": "^5.7.0",
     "gulp-shell": "^0.8.0",
-    "gulp-typedoc": "^2.2.5",
+    "gulp-typedoc": "^3.0.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "mocha": "^10.2.0",
