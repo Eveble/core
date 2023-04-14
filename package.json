@@ -89,9 +89,9 @@
     "source-map-support": "^0.5.21",
     "ts-node": "^8.10.1",
     "ts-sinon": "^1.2.0",
-    "typescript": "4.5.4"
     "typedoc": "^0.23.28",
     "typedoc-plugin-markdown": "3.14.0",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "explain": "./node_modules/.bin/npm-scripts-info",
