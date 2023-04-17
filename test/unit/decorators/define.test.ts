@@ -13,7 +13,7 @@ import {
 
 chai.use(sinonChai);
 
-describe(`define`, function () {
+describe(`define`, () => {
   let originalLibrary: any;
   let library: any;
 

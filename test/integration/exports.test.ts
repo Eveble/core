@@ -47,7 +47,7 @@ import {
   CORE_METADATA_KEYS as CORE_METADATA_KEYS_EXPORTED,
 } from '../../src/index';
 
-describe('exports', function () {
+describe('exports', () => {
   describe('constants', () => {
     it('BINDINGS', () => {
       expect(BINDINGS_EXPORTED).to.be.equal(BINDINGS);

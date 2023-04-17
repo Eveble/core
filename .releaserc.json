@@ -1,9 +1,9 @@
 {
+  "repositoryUrl": "https://github.com/Eveble/core",
   "branches": [
     "master",
     "next"
   ],
-  "repositoryUrl": "https://github.com/Eveble/core",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
