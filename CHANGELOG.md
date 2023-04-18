@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/Eveble/core/compare/v1.1.0...v1.1.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* **github:** update github release.yml ([88cb763](https://github.com/Eveble/core/commit/88cb7632716b8dbd0868599e80d6502444ed7ae5))
+* **typedoc:** update typedoc.json for v0.23 ([84413c6](https://github.com/Eveble/core/commit/84413c616da9ef36b1df02993527a34da2b20879))
+
+
 # [1.1.0](https://github.com/Eveble/core/compare/v1.0.18...v1.1.0) (2023-04-12)
 
 

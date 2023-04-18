@@ -1,12 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var util = require('util');
 var lodash = require('lodash');
-var getenv = _interopDefault(require('getenv'));
+var getenv = require('getenv');
 require('reflect-metadata');
 var inversifyAsync = require('@parisholley/inversify-async');
 var helpers = require('@eveble/helpers');
@@ -391,21 +387,15 @@ typend.define.afterDefine = function (target, reflectedType, ...args) {
 
 Object.defineProperty(exports, 'CoreTypes', {
   enumerable: true,
-  get: function () {
-    return util.types;
-  }
+  get: function () { return util.types; }
 });
 Object.defineProperty(exports, 'types', {
   enumerable: true,
-  get: function () {
-    return util.types;
-  }
+  get: function () { return util.types; }
 });
 Object.defineProperty(exports, 'define', {
   enumerable: true,
-  get: function () {
-    return typend.define;
-  }
+  get: function () { return typend.define; }
 });
 exports.BINDINGS = BINDINGS;
 exports.CORE_BINDINGS = BINDINGS;
