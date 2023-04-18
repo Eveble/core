@@ -88,11 +88,11 @@ jobs:
         run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 🚧 Install dependencies on Docusaurus
+      - name: 🚧  Install dependencies on Docusaurus
         run: |
           cd ./website
           yarn install
-      - name: 📄 Build docs
+      - name: 📄  Build docs
         run: yarn docs:build
       - name: Fix 404 Page not found for Github in case .nojekyll is missing in ./website/static
         run: touch ./website/build/.nojekyll
