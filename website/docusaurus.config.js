@@ -16,6 +16,7 @@ module.exports = {
   url: project.url, // URL to documentation
   baseUrl: project.baseUrl,
   favicon: 'img/favicon.ico',
+  onBrokenLinks: 'warn',
   organizationName: project.organizationName, // Usually your GitHub org/user name, use object to define author on package.json
   projectName: project.projectName, // Usually your repo name.
   themeConfig: {
@@ -39,7 +40,6 @@ module.exports = {
           label: 'API',
           position: 'right',
         },
-        { to: 'blog', label: 'Blog', position: 'right' },
         {
           href: project.repositoryUrl,
           className: 'header-github-link',
@@ -92,11 +92,9 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} <a href="${
-        project.organizationUrl
-      }" target="_blank">${
-        project.organizationName
-      }</a>. Built with <a href="https://docusaurus.io/" target="_blank">Docusaurus</a> <span class="love"></span>`,
+      copyright: `Copyright © ${new Date().getFullYear()} <a href="${project.organizationUrl
+        }" target="_blank">${project.organizationName
+        }</a>. Built with <a href="https://docusaurus.io/" target="_blank">Docusaurus</a> <span class="love"></span>`,
     },
   },
   presets: [
