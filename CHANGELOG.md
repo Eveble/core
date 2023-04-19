@@ -1,3 +1,19 @@
+## [1.1.5](https://github.com/Eveble/core/compare/v1.1.4...v1.1.5) (2023-04-19)
+
+
+### Bug Fixes
+
+* **github:** update release.yml ([c8991ad](https://github.com/Eveble/core/commit/c8991ad19800a1a7a4ba2fecf2c608e02082be2c))
+* **github:** update release.yml ([d0a6d5c](https://github.com/Eveble/core/commit/d0a6d5cff106973563570d53d7db9ab6d298e563))
+* **github:** update release.yml ([5158a42](https://github.com/Eveble/core/commit/5158a42731a64e9d3a0d3f85c66a3191f2764d40))
+* **github:** update release.yml ([dd8912c](https://github.com/Eveble/core/commit/dd8912c86ec9a4e10a800b49af53723068759d3f))
+* **github:** update release.yml ([cd6e300](https://github.com/Eveble/core/commit/cd6e300ca231996459c7585b860e6b96d08c021c))
+* **github:** update release.yml ([f54ff52](https://github.com/Eveble/core/commit/f54ff52baa1452919a06c5bc7e22ee82675d9331))
+* **github:** update release.yml ([bc4a33f](https://github.com/Eveble/core/commit/bc4a33fc89df14db40ae2d3fed9c4c6a5532350d))
+* **github:** update release.yml ([2056b48](https://github.com/Eveble/core/commit/2056b482789b6509ca154ba08233276b0e9bd6e4))
+* **github:** update release.yml ([68b68d4](https://github.com/Eveble/core/commit/68b68d4b23903755c263b0b895325ce9a0beb4e6))
+* **github:** update release.yml ([836cc30](https://github.com/Eveble/core/commit/836cc30355860d2087e507f039d82fcd18087a8e))
+
 ## [1.1.4](https://github.com/Eveble/core/compare/v1.1.3...v1.1.4) (2023-04-19)
 
 
