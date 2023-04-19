@@ -77,7 +77,7 @@ jobs:
       - name: 🚀  [public]Release
         if: ${{ env.IS_ON_NPM == 'true' }}
         uses: cycjimmy/semantic-release-action@v3
-        id: semantic
+        id: public-semantic
         with:
           semantic_version: 19.0.5
           dry_run: false
@@ -96,7 +96,7 @@ jobs:
       - name: 🚀  [private]Release
         if: ${{ env.IS_ON_NPM == 'false' }}
         uses: cycjimmy/semantic-release-action@v3
-        id: semantic
+        id: private-semantic
         with:
           semantic_version: 19.0.5
           dry_run: false
