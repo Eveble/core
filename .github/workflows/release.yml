@@ -5,7 +5,7 @@ on:
     branches: [master, next, alpha, beta]
 env:
   # Setting an environment variable with the value of a configuration variable
-  IS_ON_NPM: ${{ vars.IS_ON_NPM }}
+  IS_PRIVATE: ${{ vars.IS_PRIVATE }}
   USERNAME: ${{ github.event.github.actor }}
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: 🪬 Set env
         run: |
-          echo IS_ON_NPM: ${{ env.IS_ON_NPM }}
+          echo IS_PRIVATE: ${{ env.IS_PRIVATE }}
       - name: ⤵️  Checkout
         uses: actions/checkout@v3
         with:
@@ -52,15 +52,15 @@ jobs:
         # IT will always use NODE_AUTH_TOKEN to define what will be used to
         # authenticate with the registry.
         # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      - name: ⚙️ [public]Setup Node@18.x
-        if: ${{ env.IS_ON_NPM == 'true' }}
+      - name: ⚙️ Setup Node@18.x
+        if: ${{ env.IS_PRIVATE != 'true' }}
         uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
           scope: ${{ env.USERNAME }}
       - name: ⚙️ [private]Setup Node@18.x
-        if: ${{ env.IS_ON_NPM == 'false' }}
+        if: ${{ env.IS_PRIVATE == 'true' }}
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -75,7 +75,7 @@ jobs:
       - name: 🏗️ Build
         run: yarn build
       - name: 🚀  [public]Release
-        if: ${{ env.IS_ON_NPM == 'true' }}
+        if: ${{ env.IS_PRIVATE != 'true' }}
         uses: cycjimmy/semantic-release-action@v3
         id: public-semantic
         with:
@@ -96,7 +96,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🚀  [private]Release
-        if: ${{ env.IS_ON_NPM == 'false' }}
+        if: ${{ env.IS_PRIVATE == 'true' }}
         uses: cycjimmy/semantic-release-action@v3
         id: private-semantic
         with:
