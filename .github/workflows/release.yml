@@ -37,14 +37,18 @@ jobs:
     steps:
       - name: 🪬 Set env
         run: |
-          echo @${{ env.IS_ON_NPM }}
+          echo IS_ON_NPM: ${{ env.IS_ON_NPM }}
           if [[ $IS_ON_NPM == 'true' ]]; then
               echo "REGISTRY_URL=https://registry.npmjs.org" >> "$GITHUB_ENV"
               echo "NODE_AUTH_TOKEN=$NPM_TOKEN" >> "$GITHUB_ENV"
+              echo NODE_AUTH_TOKEN: NPM_TOKEN
           else
               echo "REGISTRY_URL=https://npm.pkg.github.com" >> "$GITHUB_ENV"
               echo "NODE_AUTH_TOKEN=$GITHUB_TOKEN" >> "$GITHUB_ENV"
+              echo NODE_AUTH_TOKEN: GITHUB_TOKEN
           fi
+          echo REGISTRY_URL: ${{ env.REGISTRY_URL }}
+
       - name: ⤵️  Checkout
         uses: actions/checkout@v3
         with:
@@ -85,11 +89,13 @@ jobs:
             @semantic-release/npm@9.0.2
         env:
           # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          # NPM_TOKEN & GH_TOKEN will be ignored, use NODE_AUTH_TOKEN
+          # NPM_TOKEN & GH_TOKEN _CAN_ be ignored, use NODE_AUTH_TOKEN
+          # if this action fails do to: "EINVALIDNPMTOKEN Invalid npm token."
           # https://github.com/semantic-release/semantic-release/issues/2313
           # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       - name: 🎉 Output release
         if: steps.semantic.outputs.new_release_published == 'true'
