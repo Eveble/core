@@ -39,15 +39,18 @@ jobs:
         run: |
           echo IS_ON_NPM: ${{ env.IS_ON_NPM }}
           if [[ $IS_ON_NPM != 'true' ]]; then
+              echo "Defining environment variables for GITHUB"
               echo "REGISTRY_URL=https://npm.pkg.github.com" >> "$GITHUB_ENV"
               echo "NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN}}" >> "$GITHUB_ENV"
               echo NODE_AUTH_TOKEN: GITHUB_TOKEN
           else
+              echo "Defining environment variables for NPM"
               echo "REGISTRY_URL=https://registry.npmjs.org" >> "$GITHUB_ENV"
               echo "NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN}}" >> "$GITHUB_ENV"
               echo NODE_AUTH_TOKEN: NPM_TOKEN
           fi
           echo REGISTRY_URL: ${{ env.REGISTRY_URL }}
+          echo REGISTRY_URL: $REGISTRY_URL
 
       - name: ⤵️  Checkout
         uses: actions/checkout@v3
