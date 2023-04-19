@@ -38,20 +38,6 @@ jobs:
       - name: 🪬 Set env
         run: |
           echo IS_ON_NPM: ${{ env.IS_ON_NPM }}
-          if [[ $IS_ON_NPM != 'true' ]]; then
-              echo "Defining environment variables for GITHUB"
-              echo "REGISTRY_URL=https://npm.pkg.github.com" >> "$GITHUB_ENV"
-              echo "NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN}}" >> "$GITHUB_ENV"
-              echo NODE_AUTH_TOKEN: GITHUB_TOKEN
-          else
-              echo "Defining environment variables for NPM"
-              echo "REGISTRY_URL=https://registry.npmjs.org" >> "$GITHUB_ENV"
-              echo "NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN}}" >> "$GITHUB_ENV"
-              echo NODE_AUTH_TOKEN: NPM_TOKEN
-          fi
-          echo REGISTRY_URL: ${{ env.REGISTRY_URL }}
-          echo REGISTRY_URL: $REGISTRY_URL
-
       - name: ⤵️  Checkout
         uses: actions/checkout@v3
         with:
@@ -66,11 +52,19 @@ jobs:
         # IT will always use NODE_AUTH_TOKEN to define what will be used to
         # authenticate with the registry.
         # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      - name: ⚙️ Setup Node@18.x
+      - name: ⚙️ [public]Setup Node@18.x
+        if: ${{ env.IS_ON_NPM == 'true' }}
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url:  ${{ env.REGISTRY_URL }}
+          registry-url: 'https://registry.npmjs.org'
+          scope: ${{ env.USERNAME }}
+      - name: ⚙️ [private]Setup Node@18.x
+        if: ${{ env.IS_ON_NPM == 'false' }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://npm.pkg.github.com/'
           scope: ${{ env.USERNAME }}
       - name: 🚧  Install dependencies
         run: yarn install
@@ -80,7 +74,8 @@ jobs:
         run: yarn test
       - name: 🏗️ Build
         run: yarn build
-      - name: 🚀  Release
+      - name: 🚀  [public]Release
+        if: ${{ env.IS_ON_NPM == 'true' }}
         uses: cycjimmy/semantic-release-action@v3
         id: semantic
         with:
@@ -97,6 +92,24 @@ jobs:
           # https://github.com/semantic-release/semantic-release/issues/2313
           # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - name: 🚀  [private]Release
+        if: ${{ env.IS_ON_NPM == 'false' }}
+        uses: cycjimmy/semantic-release-action@v3
+        id: semantic
+        with:
+          semantic_version: 19.0.5
+          dry_run: false
+          extra_plugins: |
+            @semantic-release/changelog@6.0.3
+            @semantic-release/git@10.0.1
+            @semantic-release/npm@9.0.2
+        env:
+          # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          # NPM_TOKEN & GH_TOKEN _CAN_ be ignored, use NODE_AUTH_TOKEN
+          # if this action fails do to: "EINVALIDNPMTOKEN Invalid npm token."
+          # https://github.com/semantic-release/semantic-release/issues/2313
+          # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
