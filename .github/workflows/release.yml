@@ -3,6 +3,12 @@ name: Push to release branches
 on:
   push:
     branches: [master, next, alpha, beta]
+env:
+  # Setting an environment variable with the value of a configuration variable
+  IS_ON_NPM: ${{ vars.IS_ON_NPM }}
+  USERNAME: ${{ github.event.github.actor }}
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
 jobs:
   # Release with semantic-release an auto-merged branch to: Github repository, NPM, Github package registry
   release:
@@ -28,20 +34,35 @@ jobs:
     if: >
       github.actor != 'semantic-release-bot'
       && ! contains(github.event.head_commit.message, 'chore(release):')
-    env:
-      USERNAME: ${{ github.event.github.actor }}
-      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      EVEBLE_TYPES_AUTH_TOKEN: ${{ secrets.EVEBLE_TYPES_AUTH_TOKEN }}
     steps:
+      - name: 🪬 Set env
+        run: |
+          if [[ $IS_ON_NPM == 'true' ]]; then
+              echo "REGISTRY_URL=https://registry.npmjs.org" >> "$GITHUB_ENV"
+              echo "NODE_AUTH_TOKEN=$NPM_TOKEN" >> "$GITHUB_ENV"
+          else
+              echo "REGISTRY_URL=https://npm.pkg.github.com" >> "$GITHUB_ENV"
+              echo "NODE_AUTH_TOKEN=$GITHUB_TOKEN" >> "$GITHUB_ENV"
+          fi
       - name: ⤵️  Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # THIS WILL DEFINE WHICH REGISTRY IS USED ON SEMANTIC
+        # It does not care if you are using extra-plugin: @semantic-release/npm@9.0.2
+        # If registry-url is defined to: registry-url: 'https://npm.pkg.github.com/'
+        # It will always try to publish the package on github AND NOT npm
+        # On top of this issue:
+        # IT WILL COMPLETELY ignore GH_TOKEN, GITHUB_TOKEN, NPM_TOKEN
+        # IT will always use NODE_AUTH_TOKEN to define what will be used to
+        # authenticate with the registry.
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       - name: ⚙️ Setup Node@18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
+          registry-url:  ${{ env.REGISTRY_URL }}
           scope: ${{ env.USERNAME }}
       - name: 🚧  Install dependencies
         run: yarn install
@@ -62,12 +83,14 @@ jobs:
             @semantic-release/git@10.0.1
             @semantic-release/npm@9.0.2
         env:
-          # FOR EFFFIN SAKE READ THIS SH1T:
+          # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          # NPM_TOKEN & GH_TOKEN will be ignored, use NODE_AUTH_TOKEN
           # https://github.com/semantic-release/semantic-release/issues/2313
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       - name: 🎉 Output release
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
