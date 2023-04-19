@@ -87,9 +87,8 @@ jobs:
           # NPM_TOKEN & GH_TOKEN will be ignored, use NODE_AUTH_TOKEN
           # https://github.com/semantic-release/semantic-release/issues/2313
           # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       - name: 🎉 Output release
         if: steps.semantic.outputs.new_release_published == 'true'
