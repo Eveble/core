@@ -37,6 +37,7 @@ jobs:
     steps:
       - name: 🪬 Set env
         run: |
+          echo @${{ env.IS_ON_NPM }}
           if [[ $IS_ON_NPM == 'true' ]]; then
               echo "REGISTRY_URL=https://registry.npmjs.org" >> "$GITHUB_ENV"
               echo "NODE_AUTH_TOKEN=$NPM_TOKEN" >> "$GITHUB_ENV"
