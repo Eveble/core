@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/Eveble/core/compare/v1.1.5...v1.1.6) (2023-04-19)
+
+
+### Bug Fixes
+
+* **github:** update release.yml ([f043c73](https://github.com/Eveble/core/commit/f043c73dad9ab152eecfad24321875fc0de37a99))
+
 ## [1.1.5](https://github.com/Eveble/core/compare/v1.1.4...v1.1.5) (2023-04-19)
 
 
