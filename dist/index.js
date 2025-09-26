@@ -76,7 +76,7 @@ class ExtendableError extends Error {
     }
 }
 
-/*! *****************************************************************************
+/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -90,6 +90,8 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
+/* global Reflect, Promise */
+
 
 function __decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -160,6 +162,9 @@ exports.Library = Library_1 = class Library {
         }
         return type;
     }
+    getTypeOrFail(typeName) {
+        return this.getTypeOrThrow(typeName);
+    }
     getTypes() {
         return this.types;
     }
@@ -174,6 +179,9 @@ exports.Library = Library_1 = class Library {
     }
     setState(state) {
         this.state = state;
+    }
+    clear() {
+        this.types.clear();
     }
 };
 exports.Library.STATES = {
@@ -304,7 +312,7 @@ function isSerializable(arg) {
         return false;
     return (typeof arg.typeName === 'function' &&
         typeof arg.toJSONValue === 'function' &&
-        typend.isDefined(arg.constructor));
+        typend.isType(arg.constructor));
 }
 function resolveSerializableFromPropType(propType) {
     if (propType == null)
@@ -337,13 +345,13 @@ class InvalidTypeNameError extends ExtendableError {
         super(`Expected type name argument to be a String, got ${invalidTypeName}`);
     }
 }
-typend.define.beforeDefine = function (_target, _reflectedType, ...args) {
+typend.Type.beforeHook = function (_target, _reflectedType, ...args) {
     const name = args[0];
     if (name !== undefined && !lodash.isString(name)) {
         throw new InvalidTypeNameError(kernel.describer.describe(name));
     }
 };
-typend.define.afterDefine = function (target, reflectedType, ...args) {
+typend.Type.afterHook = function (target, reflectedType, ...args) {
     const name = args[0];
     let typeName;
     if (name !== undefined) {
@@ -361,21 +369,11 @@ typend.define.afterDefine = function (target, reflectedType, ...args) {
     if (reflectedType.type === undefined) {
         reflectedType.type = target;
     }
-    const defaults = {};
     const classPattern = kernel.converter.convert(reflectedType);
     if (classPattern === undefined && classPattern.properties === undefined) {
         return;
     }
     const propTypes = classPattern.properties;
-    for (const [key, propType] of Object.entries(propTypes)) {
-        if (typeof propType.hasInitializer === 'function' &&
-            propType.hasInitializer()) {
-            defaults[key] = propType.getInitializer();
-        }
-    }
-    if (!lodash.isEmpty(defaults)) {
-        Reflect.defineMetadata(DEFAULT_PROPS_KEY, defaults, target);
-    }
     const serializableListProps = {};
     for (const key of Object.keys(propTypes)) {
         const serializable = resolveSerializableFromPropType(propTypes[key]);
@@ -393,9 +391,9 @@ Object.defineProperty(exports, 'types', {
   enumerable: true,
   get: function () { return util.types; }
 });
-Object.defineProperty(exports, 'define', {
+Object.defineProperty(exports, 'Type', {
   enumerable: true,
-  get: function () { return typend.define; }
+  get: function () { return typend.Type; }
 });
 exports.BINDINGS = BINDINGS;
 exports.CORE_BINDINGS = BINDINGS;

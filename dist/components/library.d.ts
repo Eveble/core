@@ -12,9 +12,11 @@ export declare class Library {
     overrideType(typeName: types.TypeName, type: any): void;
     getType(typeName: types.TypeName): any | undefined;
     getTypeOrThrow(typeName: types.TypeName): any;
+    getTypeOrFail(typeName: types.TypeName): any;
     getTypes(): Map<string, any>;
     hasType(typeName: types.TypeName): boolean;
     removeType(typeName: types.TypeName): void;
     isInState(state: types.State): boolean;
     setState(state: types.State): void;
+    clear(): void;
 }

@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/Eveble/core/compare/v1.1.8...v2.0.0) (2025-09-26)
+
+
+* refactor!: use Type decorator instead of define ([e863dff](https://github.com/Eveble/core/commit/e863dff8059673a5202318a4e368482be01fb47e))
+
+
+### BREAKING CHANGES
+
+* use Type decorator instead of define
+
 ## [1.1.8](https://github.com/Eveble/core/compare/v1.1.7...v1.1.8) (2023-04-21)
 
 
