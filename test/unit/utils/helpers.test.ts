@@ -4,11 +4,11 @@ import {
   isSerializable,
   resolveSerializableFromPropType,
 } from '../../../src/utils/helpers';
-import { define } from '../../../src/decorators/define';
+import { Type } from '../../../src/decorators/type.decorator';
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 describe('helpers', () => {
-  @define('SerializableStub')
+  @Type('SerializableStub')
   class SerializableStub {
     typeName(): void {}
 
@@ -16,14 +16,14 @@ describe('helpers', () => {
   }
 
   describe('isSerializable', () => {
-    it('returns true for defined(@define) class instances implementing Serializable interface', () => {
-      @define('MySerialziable', { isRegistrable: false })
+    it('returns true for defined(@Type) class instances implementing Serializable interface', () => {
+      @Type('MySerialziable', { isRegistrable: false })
       class MySerializable extends SerializableStub {}
 
       expect(isSerializable(new MySerializable())).to.be.true;
     });
 
-    it('returns false for not defined(@define) class instances that implementing Serializable interface', () => {
+    it('returns false for not defined(@Type) class instances that implementing Serializable interface', () => {
       class MySerializable extends SerializableStub {}
 
       expect(isSerializable(new MySerializable())).to.be.false;

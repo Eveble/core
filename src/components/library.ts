@@ -84,6 +84,18 @@ export class Library {
   }
 
   /**
+   * Returns type by name.
+   * Alias for getTypeOrThrow.
+   * @param typeName - Type name as mapping for type.
+   * @returns Registered type instance, else throws.
+   * @throws {TypeNotFoundError}
+   * Thrown if provided type can't be found on library.
+   */
+  public getTypeOrFail(typeName: types.TypeName): any {
+    return this.getTypeOrThrow(typeName);
+  }
+
+  /**
    * Returns all registered types on Library.
    * @returns Map of all registered types.
    */
@@ -123,5 +135,12 @@ export class Library {
    */
   public setState(state: types.State): void {
     this.state = state;
+  }
+
+  /**
+   * Clears all registered types.
+   */
+  public clear(): void {
+    this.types.clear();
   }
 }

@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { define } from 'typend';
+import { Type } from 'typend';
 import { ExtendableError } from '../../src/components/extendable-error';
 import { Library } from '../../src/components/library';
 import { kernel, Kernel } from '../../src/kernel';
-import { InvalidTypeNameError } from '../../src/decorators/define';
+import { InvalidTypeNameError } from '../../src/decorators/type.decorator';
 import { BINDINGS } from '../../src/constants/bindings';
 import { METADATA_KEYS } from '../../src/constants/metadata-keys';
 import {
@@ -28,7 +28,7 @@ import {
   kernel as kernelExported,
   Kernel as KernelExported,
   // Decorators
-  define as defineExported,
+  Type as TypeExported,
   // Helpers
   isSerializable as isSerializableExported,
   resolveSerializableFromPropType as resolveSerializableFromPropTypeExported,
@@ -64,8 +64,8 @@ describe('exports', () => {
   });
 
   describe('decorators', () => {
-    it('define', () => {
-      expect(defineExported).to.be.equal(define);
+    it('Type', () => {
+      expect(TypeExported).to.be.equal(Type);
     });
   });
 

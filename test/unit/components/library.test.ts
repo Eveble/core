@@ -83,11 +83,17 @@ describe(`Library`, () => {
       const lib = new Library();
       lib.registerType('MyType', MyType);
       expect(lib.getType('MyType')).to.be.equal(MyType);
+      expect(lib.getTypeOrThrow('MyType')).to.be.equal(MyType);
+      expect(lib.getTypeOrFail('MyType')).to.be.equal(MyType);
     });
 
     it('throws TypeNotFoundError if type is not registered on library', () => {
       const lib = new Library();
       expect(() => lib.getTypeOrThrow('MyType')).to.throw(
+        TypeNotFoundError,
+        `Library: type 'MyType' not found`
+      );
+      expect(() => lib.getTypeOrFail('MyType')).to.throw(
         TypeNotFoundError,
         `Library: type 'MyType' not found`
       );
@@ -114,6 +120,15 @@ describe(`Library`, () => {
       expect(lib.getType('MyType')).to.be.equal(MyType);
       lib.removeType('MyType');
       expect(lib.getType('MyType')).to.be.undefined;
+    });
+
+    it('removes all types', () => {
+      const lib = new Library();
+      lib.registerType('MyType', MyType);
+      lib.registerType('MyOtherType', MyOtherType);
+      expect(lib.getTypes()).to.have.length(2);
+      lib.clear();
+      expect(lib.getTypes()).to.be.empty;
     });
   });
 });

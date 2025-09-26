@@ -1,14 +1,11 @@
 import 'reflect-metadata';
 import { setTypeName } from '@eveble/helpers';
-import { define, Collection } from 'typend';
-import { isString, isEmpty } from 'lodash';
+import { Type, Collection } from 'typend';
+import { isString } from 'lodash';
 import { Types as tsruntimeTypes } from 'tsruntime';
 import { ExtendableError } from '../components/extendable-error';
 import { kernel } from '../kernel';
-import {
-  DEFAULT_PROPS_KEY,
-  SERIALIZABLE_LIST_PROPS_KEY,
-} from '../constants/metadata-keys';
+import { SERIALIZABLE_LIST_PROPS_KEY } from '../constants/metadata-keys';
 import { types } from '../types';
 import {
   resolveSerializableFromPropType,
@@ -28,14 +25,14 @@ export class InvalidTypeNameError extends ExtendableError {
  * @throws {InvalidTypeNameError}
  * Thrown if provided type name is not a string.
  * @example
- * define()
+ * @Type()
  * class MyType {}
- * define('MyTypeName')
+ * @Type('MyTypeName')
  * class MyType {}
- * define('MyNamespace.MyTypeName')
+ * @Type('MyNamespace.MyTypeName')
  * class MyType {}
  */
-define.beforeDefine = function (
+Type.beforeHook = function (
   _target: any,
   _reflectedType: tsruntimeTypes.ReflectedType,
   ...args: any[]
@@ -51,14 +48,14 @@ define.beforeDefine = function (
  * @param name - Optional name for the type(otherwise, class constructor name will be used.)
  * @returns Marked class as reflective.
  * @example
- * define()
+ * @Type()
  * class MyType {}
- * define('MyTypeName')
+ * @Type('MyTypeName')
  * class MyType {}
- * define('MyNamespace.MyTypeName')
+ * @Type('MyNamespace.MyTypeName')
  * class MyType {}
  */
-define.afterDefine = function (
+Type.afterHook = function (
   target: any,
   reflectedType: tsruntimeTypes.ReferenceType,
   ...args: any[]
@@ -85,26 +82,11 @@ define.afterDefine = function (
     reflectedType.type = target;
   }
 
-  // Define default values since TypeScript(and JavaScript) way of
-  // handling property initializers is not reliable
-  const defaults = {};
   const classPattern = kernel.converter.convert(reflectedType);
   if (classPattern === undefined && classPattern.properties === undefined) {
     return;
   }
   const propTypes = classPattern.properties as Collection;
-  for (const [key, propType] of Object.entries(propTypes)) {
-    if (
-      typeof propType.hasInitializer === 'function' &&
-      propType.hasInitializer()
-    ) {
-      defaults[key] = propType.getInitializer();
-    }
-  }
-  if (!isEmpty(defaults)) {
-    Reflect.defineMetadata(DEFAULT_PROPS_KEY, defaults, target);
-  }
-
   // Define lists(arrays) of serializable types for later processing to Eveble's
   // `List` instances - special arrays with extended methods
   const serializableListProps = {};
@@ -119,4 +101,4 @@ define.afterDefine = function (
   );
 };
 
-export { define };
+export { Type };

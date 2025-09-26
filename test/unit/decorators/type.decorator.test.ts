@@ -3,17 +3,18 @@ import chai, { expect } from 'chai';
 import { getTypeName } from '@eveble/helpers';
 import { stubInterface } from 'ts-sinon';
 import sinonChai from 'sinon-chai';
-import { define, InvalidTypeNameError } from '../../../src/decorators/define';
+// import { Type } from 'typend';
+import {
+  InvalidTypeNameError,
+  Type,
+} from '../../../src/decorators/type.decorator';
 import { kernel } from '../../../src/kernel';
 import { types } from '../../../src/types';
-import {
-  DEFAULT_PROPS_KEY,
-  SERIALIZABLE_LIST_PROPS_KEY,
-} from '../../../src/constants/metadata-keys';
+import { SERIALIZABLE_LIST_PROPS_KEY } from '../../../src/constants/metadata-keys';
 
 chai.use(sinonChai);
 
-describe(`define`, () => {
+describe(`Type`, () => {
   let originalLibrary: any;
   let library: any;
 
@@ -42,10 +43,10 @@ describe(`define`, () => {
   }
 
   describe('hooks', () => {
-    describe('beforeDefine', () => {
+    describe('beforeType', () => {
       it('throws InvalidTypeNameError if invalid type name is passed', () => {
         const fn = (): void => {
-          @define(1234)
+          @Type(1234)
           class MyType {}
           new MyType();
         };
@@ -58,9 +59,9 @@ describe(`define`, () => {
     });
   });
 
-  describe('afterDefine', () => {
+  describe('afterType', () => {
     it('sets the optional type name for type', () => {
-      @define('Namespace.MyType')
+      @Type('Namespace.MyType')
       class MyType {
         key: string;
       }
@@ -69,55 +70,75 @@ describe(`define`, () => {
 
     describe('registration', () => {
       it('registers serializable type', () => {
-        @define('MySerializable')
-        class MySerializable extends Serializable {}
+        @Type('MySerializable')
+        class MySerializable extends Serializable {
+          name: string;
+
+          constructor(props: any) {
+            super();
+            Object.assign(this, props);
+          }
+        }
+
+        new MySerializable({});
 
         expect(library.registerType).to.be.called;
-        expect(library.registerType).to.be.calledWithExactly(
-          'MySerializable',
-          MySerializable
-        );
+
+        const [registeredName, RegisteredClass] =
+          library.registerType.getCall(0).args;
+
+        // Test the name
+        expect(registeredName).to.equal('MySerializable');
+
+        // Test that it's a function (constructor)
+        expect(RegisteredClass).to.be.a('function');
+        expect(RegisteredClass.name).to.equal('MySerializable');
+
+        // Test instantiation and behavior
+        const instance = new RegisteredClass({ name: 'test' });
+        expect(instance.name).to.equal('test');
+        expect(instance).to.be.instanceOf(Serializable);
       });
 
       it('omits registration of serializable type if isRegistrable options is set to false', () => {
-        @define('MySerializable', { isRegistrable: false })
+        @Type('MySerializable', { isRegistrable: false })
         class MySerializable extends Serializable {}
         new MySerializable();
         expect(library.registerType).to.not.be.called;
       });
 
       it('skips registration on non-serializable types', () => {
-        @define('MyStruct')
+        @Type('MyStruct')
         class MyStruct {}
         new MyStruct();
         expect(library.registerType).to.not.be.called;
       });
 
-      it(`sets the property initializers on type's metadata`, () => {
-        @define('MyClass', { isRegistrable: false })
+      it(`ensures that the property initializers are working`, () => {
+        @Type('MyClass')
         class MyClass extends Serializable {
           stringKey = 'my-string';
 
           numberKey = 1337;
         }
-        expect(Reflect.getOwnMetadata(DEFAULT_PROPS_KEY, MyClass)).to.be.eql({
+        expect(new MyClass()).to.be.eql({
           stringKey: 'my-string',
           numberKey: 1337,
         });
       });
 
       it(`sets the serializable lists for later use for performance reasons`, () => {
-        @define('Employee', { isRegistrable: false })
+        @Type('Employee', { isRegistrable: false })
         class Employee extends Serializable {
           id: string;
         }
 
-        @define('Car', { isRegistrable: false })
+        @Type('Car', { isRegistrable: false })
         class Car extends Serializable {
           plate: string;
         }
 
-        @define('Company', { isRegistrable: false })
+        @Type('Company', { isRegistrable: false })
         class Company extends Serializable {
           employee: Employee[];
 

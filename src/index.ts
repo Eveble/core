@@ -12,7 +12,7 @@ export { Library } from './components/library';
 // Core
 export { kernel, Kernel } from './kernel';
 // Decorators
-export { define, InvalidTypeNameError } from './decorators/define';
+export { Type, InvalidTypeNameError } from './decorators/type.decorator';
 // Helpers
 export {
   isSerializable,

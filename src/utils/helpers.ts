@@ -1,4 +1,4 @@
-import { Optional, List, InstanceOf, isDefined } from 'typend';
+import { Optional, List, InstanceOf, isType } from 'typend';
 import { types } from '../types';
 
 /**
@@ -12,7 +12,7 @@ export function isSerializable(arg: any): boolean {
     // Matches Ejsonable type from Eveble
     typeof arg.typeName === 'function' &&
     typeof arg.toJSONValue === 'function' &&
-    isDefined(arg.constructor)
+    isType(arg.constructor)
   );
 }
 
