@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/Eveble/core/compare/v2.0.0...v2.0.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* update typend to v3.1.3 ([b1e44d5](https://github.com/Eveble/core/commit/b1e44d5c0ceb2f7e68e337b9db980014d5cf4384))
+
 # [2.0.0](https://github.com/Eveble/core/compare/v1.1.8...v2.0.0) (2025-09-26)
 
 
