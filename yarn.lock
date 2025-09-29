@@ -9077,11 +9077,6 @@ tslib@^2.1.0, tslib@^2.4.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.5.0.tgz"
   integrity sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==
 
-tsruntime@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.npmjs.org/tsruntime/-/tsruntime-5.0.1.tgz#da75fc70babf56f7f28f90ece4373961c7526707"
-  integrity sha512-6vjKzUvZrEZP0lOKrcSdivm1Fnvdr2CBgZzE97WSdB55xTwQymhcH/XFNpyTgE4uSJtG19VhlEORmOz2ODoSDQ==
-
 "tsruntime@github:eveble/tsruntime#5.0.2":
   version "5.0.1"
   resolved "https://codeload.github.com/eveble/tsruntime/tar.gz/7ccd1dac42daa2e83658f4f92d62c581128e49ff"
