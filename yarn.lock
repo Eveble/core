@@ -9082,6 +9082,10 @@ tsruntime@5.0.1:
   resolved "https://registry.npmjs.org/tsruntime/-/tsruntime-5.0.1.tgz#da75fc70babf56f7f28f90ece4373961c7526707"
   integrity sha512-6vjKzUvZrEZP0lOKrcSdivm1Fnvdr2CBgZzE97WSdB55xTwQymhcH/XFNpyTgE4uSJtG19VhlEORmOz2ODoSDQ==
 
+"tsruntime@github:eveble/tsruntime#5.0.2":
+  version "5.0.1"
+  resolved "https://codeload.github.com/eveble/tsruntime/tar.gz/7ccd1dac42daa2e83658f4f92d62c581128e49ff"
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.npmjs.org/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -9190,9 +9194,9 @@ typedoc@^0.23.28:
     shiki "^0.14.1"
 
 typend@latest:
-  version "3.1.3"
-  resolved "https://registry.npmjs.org/typend/-/typend-3.1.3.tgz#16609f07a4459c9c08b677e3992df3908a97955c"
-  integrity sha512-FQXVhZtPJTAthkjAo2YEsxuBjN7U4VxdjpFfKmXuc1z3Z/Oqh5O0MOoEt8e5k2LL6q5kTf0doGMCUgaORFoHWQ==
+  version "3.1.4"
+  resolved "https://registry.npmjs.org/typend/-/typend-3.1.4.tgz#81e1cf09333d8ec613513444eab57297205d9412"
+  integrity sha512-Uc/FxK6iqUiJugrEI0xj1aCjUWsoKLZYTU38PyAPTgfDgrMWRcfJrZafXyWyHaZb6Ll8FJJQ/J2c8ogtnJo7KQ==
   dependencies:
     "@eveble/helpers" "^1.0.4"
     chai "^4.3.7"
@@ -9204,7 +9208,7 @@ typend@latest:
     polytype "^0.17.0"
     reflect-metadata "^0.2.1"
     ts-patch "3.1.2"
-    tsruntime "5.0.1"
+    tsruntime "github:eveble/tsruntime#5.0.2"
 
 typescript@5.3.2:
   version "5.3.2"
