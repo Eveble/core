@@ -32,7 +32,8 @@
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.2.2",
     "tsruntime": "5.0.1",
-    "typend": "latest"
+    "typend": "latest",
+    "patch-package": "^8.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
@@ -119,7 +120,8 @@
     "docs:build": "npm run docs:clean && ./node_modules/.bin/typedoc --tsconfig typedoc.json && node ./website/.eveble/scripts/interface-converter.js && cd website && npm run build",
     "docs": "npm run docs:clean && ./node_modules/.bin/typedoc --tsconfig typedoc.json && node ./website/.eveble/scripts/interface-converter.js && cd ./website && npm run start",
     "semantic-release": "semantic-release",
-    "prepare": "npm run format && npm run lint && npm run build"
+    "prepare": "npm run format && npm run lint && npm run build",
+    "postinstall": "./node_modules/.bin/patch-package"
   },
   "scripts-info": {
     "explain": "Display information about the package scripts(info is already taken by yarn)",
