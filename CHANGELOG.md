@@ -1,3 +1,11 @@
+## [2.0.2](https://github.com/Eveble/core/compare/v2.0.1...v2.0.2) (2025-09-29)
+
+
+### Bug Fixes
+
+* **deps:** update tsruntime to Eveble v5.0.2 ([cc876a8](https://github.com/Eveble/core/commit/cc876a8f4d85a17d1e5a4e8e5588f603b4d4a09f))
+* **deps:** update typend to 3.1.4 ([464ce54](https://github.com/Eveble/core/commit/464ce542e90591c9af0539d44b2b7a9b2521db2b))
+
 ## [2.0.1](https://github.com/Eveble/core/compare/v2.0.0...v2.0.1) (2025-09-29)
 
 
