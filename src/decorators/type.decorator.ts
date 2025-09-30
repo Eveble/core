@@ -1,11 +1,14 @@
 import 'reflect-metadata';
 import { setTypeName } from '@eveble/helpers';
 import { Type, Collection } from 'typend';
-import { isString } from 'lodash';
+import { isEmpty, isString } from 'lodash';
 import { Types as tsruntimeTypes } from 'tsruntime';
 import { ExtendableError } from '../components/extendable-error';
 import { kernel } from '../kernel';
-import { SERIALIZABLE_LIST_PROPS_KEY } from '../constants/metadata-keys';
+import {
+  DEFAULT_PROPS_KEY,
+  SERIALIZABLE_LIST_PROPS_KEY,
+} from '../constants/metadata-keys';
 import { types } from '../types';
 import {
   resolveSerializableFromPropType,
@@ -82,11 +85,26 @@ Type.afterHook = function (
     reflectedType.type = target;
   }
 
+  // Define default values since TypeScript(and JavaScript) way of
+  // handling property initializers is not reliable
+  const defaults = {};
   const classPattern = kernel.converter.convert(reflectedType);
   if (classPattern === undefined && classPattern.properties === undefined) {
     return;
   }
   const propTypes = classPattern.properties as Collection;
+  for (const [key, propType] of Object.entries(propTypes)) {
+    if (
+      typeof propType.hasInitializer === 'function' &&
+      propType.hasInitializer()
+    ) {
+      defaults[key] = propType.getInitializer();
+    }
+  }
+  if (!isEmpty(defaults)) {
+    Reflect.defineMetadata(DEFAULT_PROPS_KEY, defaults, target);
+  }
+
   // Define lists(arrays) of serializable types for later processing to Eveble's
   // `List` instances - special arrays with extended methods
   const serializableListProps = {};
