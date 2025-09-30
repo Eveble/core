@@ -369,11 +369,21 @@ typend.Type.afterHook = function (target, reflectedType, ...args) {
     if (reflectedType.type === undefined) {
         reflectedType.type = target;
     }
+    const defaults = {};
     const classPattern = kernel.converter.convert(reflectedType);
     if (classPattern === undefined && classPattern.properties === undefined) {
         return;
     }
     const propTypes = classPattern.properties;
+    for (const [key, propType] of Object.entries(propTypes)) {
+        if (typeof propType.hasInitializer === 'function' &&
+            propType.hasInitializer()) {
+            defaults[key] = propType.getInitializer();
+        }
+    }
+    if (!lodash.isEmpty(defaults)) {
+        Reflect.defineMetadata(DEFAULT_PROPS_KEY, defaults, target);
+    }
     const serializableListProps = {};
     for (const key of Object.keys(propTypes)) {
         const serializable = resolveSerializableFromPropType(propTypes[key]);

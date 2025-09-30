@@ -1,3 +1,15 @@
+## [2.0.3](https://github.com/Eveble/core/compare/v2.0.2...v2.0.3) (2025-09-30)
+
+
+### Bug Fixes
+
+* peg tsruntime to custom Eveble patch for Partial type on constructor with inheritance ([7968dcd](https://github.com/Eveble/core/commit/7968dcd47791fc41f5efe3f333c000f5a6381c03))
+
+
+### Reverts
+
+* add property initializers back ([bcf1444](https://github.com/Eveble/core/commit/bcf144494f69e50c5f941568e69b7f6b88d60a9f))
+
 ## [2.0.2](https://github.com/Eveble/core/compare/v2.0.1...v2.0.2) (2025-09-29)
 
 
