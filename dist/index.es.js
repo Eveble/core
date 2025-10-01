@@ -2,7 +2,7 @@ export { types as CoreTypes, types } from 'util';
 import { isObject, isString, isEmpty } from 'lodash';
 import getenv from 'getenv';
 import 'reflect-metadata';
-import { injectable } from '@parisholley/inversify-async';
+import { injectable } from 'inversify';
 import { getTypeName, isMocha, isMochaInWatchMode, setTypeName } from '@eveble/helpers';
 import { typend, isType, Optional, List, InstanceOf, Type } from 'typend';
 export { Type } from 'typend';
@@ -240,35 +240,35 @@ class Kernel {
     setConverter(converter) {
         var _a, _b;
         this._converter = converter;
-        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebind(BINDINGS.Converter)) === null || _b === void 0 ? void 0 : _b.toConstantValue(converter);
+        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebindSync(BINDINGS.Converter)) === null || _b === void 0 ? void 0 : _b.toConstantValue(converter);
     }
     setValidator(validator) {
         var _a, _b;
         this._validator = validator;
-        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebind(BINDINGS.Validator)) === null || _b === void 0 ? void 0 : _b.toConstantValue(validator);
+        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebindSync(BINDINGS.Validator)) === null || _b === void 0 ? void 0 : _b.toConstantValue(validator);
     }
     setDescriber(describer) {
         var _a, _b;
         this._describer = describer;
-        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebind(BINDINGS.Describer)) === null || _b === void 0 ? void 0 : _b.toConstantValue(describer);
+        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebindSync(BINDINGS.Describer)) === null || _b === void 0 ? void 0 : _b.toConstantValue(describer);
     }
     setLibrary(library) {
         var _a, _b;
         this._library = library;
-        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebind(BINDINGS.Library)) === null || _b === void 0 ? void 0 : _b.toConstantValue(library);
+        (_b = (_a = this.injector) === null || _a === void 0 ? void 0 : _a.rebindSync(BINDINGS.Library)) === null || _b === void 0 ? void 0 : _b.toConstantValue(library);
     }
     setSerializer(serializer) {
         var _a, _b, _c;
         this._serializer = serializer;
         if ((_a = this.injector) === null || _a === void 0 ? void 0 : _a.isBound(BINDINGS.Serializer)) {
-            (_c = (_b = this.injector) === null || _b === void 0 ? void 0 : _b.rebind(BINDINGS.Serializer)) === null || _c === void 0 ? void 0 : _c.toConstantValue(serializer);
+            (_c = (_b = this.injector) === null || _b === void 0 ? void 0 : _b.rebindSync(BINDINGS.Serializer)) === null || _c === void 0 ? void 0 : _c.toConstantValue(serializer);
         }
     }
     setAsserter(asserter) {
         var _a, _b, _c;
         this._asserter = asserter;
         if ((_a = this.injector) === null || _a === void 0 ? void 0 : _a.isBound(BINDINGS.Asserter)) {
-            (_c = (_b = this.injector) === null || _b === void 0 ? void 0 : _b.rebind(BINDINGS.Asserter)) === null || _c === void 0 ? void 0 : _c.toConstantValue(asserter);
+            (_c = (_b = this.injector) === null || _b === void 0 ? void 0 : _b.rebindSync(BINDINGS.Asserter)) === null || _c === void 0 ? void 0 : _c.toConstantValue(asserter);
         }
     }
     setInjector(injector) {

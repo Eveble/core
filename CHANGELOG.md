@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/Eveble/core/compare/v2.0.3...v2.0.4) (2025-10-01)
+
+
+### Bug Fixes
+
+* **deps:** replace @parisholley/inversify-async with inversify at v7.10.2 ([82cb03e](https://github.com/Eveble/core/commit/82cb03e11a77e061eb98b9f30ae482864b785cec))
+
 ## [2.0.3](https://github.com/Eveble/core/compare/v2.0.2...v2.0.3) (2025-09-30)
 
 

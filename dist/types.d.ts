@@ -1,4 +1,4 @@
-import { interfaces as inversifyTypes } from '@parisholley/inversify-async';
+import { Container } from 'inversify';
 export declare namespace types {
     type State = string | number | undefined;
     type TypeName = string;
@@ -8,7 +8,7 @@ export declare namespace types {
         stack?: string;
         code?: number;
     };
-    type Injector = inversifyTypes.Container;
+    type Injector = Container;
     type Validator = any;
     type Describer = any;
     type Converter = any;
