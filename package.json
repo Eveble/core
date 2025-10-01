@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@eveble/helpers": "latest",
-    "@parisholley/inversify-async": "^1.1.7",
+    "inversify": "^7.10.2",
     "getenv": "^2.0.0",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.2.2",

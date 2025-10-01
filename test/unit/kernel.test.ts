@@ -3,7 +3,7 @@ import sinonChai from 'sinon-chai';
 import { stubInterface } from 'ts-sinon';
 import sinon from 'sinon';
 import { TSRuntimeConverter, typend, Describer } from 'typend';
-import { Container as Injector } from '@parisholley/inversify-async';
+import { Container as Injector } from 'inversify';
 import { types } from '../../src/types';
 import { Kernel, kernel } from '../../src/kernel';
 import { BINDINGS } from '../../src/constants/bindings';

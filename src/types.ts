@@ -1,4 +1,4 @@
-import { interfaces as inversifyTypes } from '@parisholley/inversify-async';
+import { Container } from 'inversify';
 /*
 https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
 
@@ -24,7 +24,7 @@ export namespace types {
   };
 
   // Stub interfaces so there is no code duplication/mismatch with Eveble
-  export type Injector = inversifyTypes.Container;
+  export type Injector = Container;
 
   export type Validator = any;
 

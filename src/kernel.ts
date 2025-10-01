@@ -128,7 +128,7 @@ export class Kernel {
   public setConverter(converter: types.Converter): void {
     this._converter = converter;
     this.injector
-      ?.rebind<types.Converter>(BINDINGS.Converter)
+      ?.rebindSync<types.Converter>(BINDINGS.Converter)
       ?.toConstantValue(converter);
   }
 
@@ -139,7 +139,7 @@ export class Kernel {
   public setValidator(validator: types.Validator): void {
     this._validator = validator;
     this.injector
-      ?.rebind<types.Validator>(BINDINGS.Validator)
+      ?.rebindSync<types.Validator>(BINDINGS.Validator)
       ?.toConstantValue(validator);
   }
 
@@ -150,7 +150,7 @@ export class Kernel {
   public setDescriber(describer: types.Describer): void {
     this._describer = describer;
     this.injector
-      ?.rebind<types.Describer>(BINDINGS.Describer)
+      ?.rebindSync<types.Describer>(BINDINGS.Describer)
       ?.toConstantValue(describer);
   }
 
@@ -161,7 +161,7 @@ export class Kernel {
   public setLibrary(library: types.Library): void {
     this._library = library;
     this.injector
-      ?.rebind<types.Library>(BINDINGS.Library)
+      ?.rebindSync<types.Library>(BINDINGS.Library)
       ?.toConstantValue(library);
   }
 
@@ -174,7 +174,7 @@ export class Kernel {
     // Undefined as testing helper
     if (this.injector?.isBound(BINDINGS.Serializer)) {
       this.injector
-        ?.rebind<types.Serializer>(BINDINGS.Serializer)
+        ?.rebindSync<types.Serializer>(BINDINGS.Serializer)
         ?.toConstantValue(serializer);
     }
   }
@@ -188,7 +188,7 @@ export class Kernel {
     // Undefined as testing helper
     if (this.injector?.isBound(BINDINGS.Asserter)) {
       this.injector
-        ?.rebind<types.Asserter>(BINDINGS.Asserter)
+        ?.rebindSync<types.Asserter>(BINDINGS.Asserter)
         ?.toConstantValue(asserter);
     }
   }

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { injectable } from '@parisholley/inversify-async';
+import { injectable } from 'inversify';
 import { getTypeName } from '@eveble/helpers';
 import { types } from '../types';
 import { TypeExistsError, TypeNotFoundError } from '../errors';
